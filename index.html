@@ -1,5 +1,3 @@
-# announcement
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +12,18 @@
     box-sizing: border-box;
 }
 
+html {
+    min-height: 100%;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+
     font-family: Arial, sans-serif;
+
     background:
         linear-gradient(
             135deg,
@@ -28,24 +33,38 @@ body {
             #a6c1ee,
             #84fab0
         );
+
     background-size: 400% 400%;
     animation: backgroundMove 12s ease infinite;
+
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+
     color: #4b3b52;
 }
 
 .container {
     width: min(92%, 700px);
+
     text-align: center;
+
     position: relative;
     z-index: 5;
+
+    padding: 50px 0 80px;
 }
+
+
+/* =========================
+   LOADING SCREEN
+========================= */
 
 #loading {
     font-family: monospace;
     font-size: 17px;
+
+    margin-top: 35vh;
 }
 
 #loadingText {
@@ -55,49 +74,69 @@ body {
 .progress {
     width: 100%;
     height: 14px;
+
     background: rgba(255,255,255,.65);
+
     border-radius: 20px;
+
     overflow: hidden;
 }
 
 .progressBar {
     width: 0%;
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        #ff4ecd,
-        #7c4dff,
-        #00d4ff,
-        #00e676
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff4ecd,
+            #7c4dff,
+            #00d4ff,
+            #00e676
+        );
+
     border-radius: 20px;
+
     transition: width .15s;
 }
 
+
+/* =========================
+   BIRTHDAY CONTENT
+========================= */
+
 #birthday {
     display: none;
+
     animation: appear 1.5s ease;
 }
 
 .emoji {
     font-size: 65px;
+
     animation: bounce 1.5s infinite;
 }
 
 h1 {
     font-size: clamp(40px, 10vw, 78px);
+
     margin: 10px 0;
-    background: linear-gradient(
-        90deg,
-        #ff1493,
-        #7b2cff,
-        #0099ff,
-        #00b894,
-        #ff1493
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff1493,
+            #7b2cff,
+            #0099ff,
+            #00b894,
+            #ff1493
+        );
+
     background-size: 300%;
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
     animation: rainbowText 5s linear infinite;
 }
 
@@ -108,62 +147,98 @@ h1 {
 
 .card {
     margin-top: 28px;
+
     padding: 28px;
+
     border-radius: 30px;
+
     background: rgba(255,255,255,.72);
+
     backdrop-filter: blur(8px);
+
     box-shadow:
         0 15px 50px rgba(80,50,100,.2);
 }
 
 .message {
     margin: 13px 0;
+
     font-size: 17px;
+
+    line-height: 1.6;
 }
 
 .highlight {
     margin-top: 22px;
+
     font-size: 23px;
+
     font-weight: bold;
+
     color: #e84393;
+
+    line-height: 1.5;
 }
 
 .cake {
     margin-top: 28px;
+
     font-size: 75px;
+
     animation: cakeBounce 2s infinite;
 }
 
 .small {
     margin-top: 20px;
+
     font-size: 14px;
+
     opacity: .75;
 }
+
+
+/* =========================
+   FLOATING EFFECTS
+========================= */
 
 #confetti,
 #balloons {
     position: fixed;
+
     inset: 0;
+
     pointer-events: none;
+
     overflow: hidden;
+
+    z-index: 1;
 }
 
 .confetti {
     position: absolute;
+
     top: -20px;
+
     width: 10px;
     height: 16px;
+
     animation: fall linear forwards;
 }
 
 .balloon {
     position: absolute;
+
     bottom: -100px;
+
     font-size: 45px;
+
     animation: balloonRise linear forwards;
 }
 
-/* Animations */
+
+/* =========================
+   ANIMATIONS
+========================= */
 
 @keyframes backgroundMove {
 
@@ -181,23 +256,31 @@ h1 {
 
 }
 
+
 @keyframes appear {
 
     from {
         opacity: 0;
-        transform: scale(.8) translateY(30px);
+
+        transform:
+            scale(.8)
+            translateY(30px);
     }
 
     to {
         opacity: 1;
-        transform: scale(1) translateY(0);
+
+        transform:
+            scale(1)
+            translateY(0);
     }
 
 }
 
+
 @keyframes bounce {
 
-    0%,100% {
+    0%, 100% {
         transform: translateY(0);
     }
 
@@ -207,17 +290,23 @@ h1 {
 
 }
 
+
 @keyframes cakeBounce {
 
-    0%,100% {
-        transform: translateY(0) rotate(0deg);
+    0%, 100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
     }
 
     50% {
-        transform: translateY(-8px) rotate(2deg);
+        transform:
+            translateY(-8px)
+            rotate(2deg);
     }
 
 }
+
 
 @keyframes rainbowText {
 
@@ -231,24 +320,35 @@ h1 {
 
 }
 
+
 @keyframes fall {
 
     from {
-        transform: translateY(0) rotate(0deg);
+        transform:
+            translateY(0)
+            rotate(0deg);
+
         opacity: 1;
     }
 
     to {
-        transform: translateY(110vh) rotate(720deg);
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
         opacity: 0;
     }
 
 }
 
+
 @keyframes balloonRise {
 
     from {
-        transform: translateY(0) rotate(-5deg);
+        transform:
+            translateY(0)
+            rotate(-5deg);
+
         opacity: 0;
     }
 
@@ -257,7 +357,10 @@ h1 {
     }
 
     to {
-        transform: translateY(-120vh) rotate(10deg);
+        transform:
+            translateY(-120vh)
+            rotate(10deg);
+
         opacity: 0;
     }
 
@@ -266,12 +369,18 @@ h1 {
 </style>
 </head>
 
+
 <body>
 
 <div id="confetti"></div>
+
 <div id="balloons"></div>
 
+
 <div class="container">
+
+
+    <!-- LOADING -->
 
     <div id="loading">
 
@@ -280,20 +389,26 @@ h1 {
         </div>
 
         <div class="progress">
+
             <div
                 class="progressBar"
                 id="bar">
             </div>
+
         </div>
 
     </div>
 
 
+    <!-- BIRTHDAY MESSAGE -->
+
     <div id="birthday">
+
 
         <div class="emoji">
             🎉
         </div>
+
 
         <div style="
             font-size:14px;
@@ -303,42 +418,89 @@ h1 {
             OFFICIAL BIRTHDAY ANNOUNCEMENT
         </div>
 
+
         <h1>
             HAPPY BIRTHDAY! 🎂
         </h1>
 
+
         <div class="subtitle">
+
             Today is officially your day. 💖
+
         </div>
 
 
         <div class="card">
 
+
             <div class="message">
                 🎈 May your day be filled with laughter.
             </div>
+
 
             <div class="message">
                 ✨ May good things find you unexpectedly.
             </div>
 
+
             <div class="message">
                 🌷 May you have more reasons to smile this year.
             </div>
+
 
             <div class="message">
                 💫 May your dreams slowly become reality.
             </div>
 
+
             <div class="message">
                 🥰 And may you always remember how loved you are.
             </div>
 
+
             <div class="highlight">
+
                 Another year older.
                 <br>
+
                 Another year of being wonderfully you. 💗
+
             </div>
+
+
+        </div>
+
+
+        <div class="card">
+
+
+            <div class="message">
+                🎁 Here's to new memories.
+            </div>
+
+
+            <div class="message">
+                🌈 New adventures.
+            </div>
+
+
+            <div class="message">
+                ☀️ More beautiful days.
+            </div>
+
+
+            <div class="message">
+                💕 And plenty of reasons to be happy.
+            </div>
+
+
+            <div class="highlight">
+
+                I hope this year is kind to you. 🌷
+
+            </div>
+
 
         </div>
 
@@ -347,13 +509,35 @@ h1 {
             🎂
         </div>
 
+
         <div class="highlight">
+
             Make a wish! 🌟
+
         </div>
 
+
         <div class="small">
+
             Warning: excessive happiness may occur. 😂
+
         </div>
+
+
+        <div style="
+            margin-top:35px;
+            font-size:18px;
+            line-height:1.7;
+            font-weight:bold;
+        ">
+
+            🎉 Happy Birthday! 🎉
+            <br>
+            May this year bring you
+            everything you've been hoping for. 💖
+
+        </div>
+
 
     </div>
 
@@ -361,6 +545,11 @@ h1 {
 
 
 <script>
+
+
+/* =========================
+   LOADING ANIMATION
+========================= */
 
 const bar =
     document.getElementById("bar");
@@ -403,7 +592,9 @@ let progress = 0;
 
 const timer = setInterval(() => {
 
+
     progress += 2;
+
 
     bar.style.width =
         progress + "%";
@@ -422,62 +613,87 @@ const timer = setInterval(() => {
 
     if (progress >= 100) {
 
+
         clearInterval(timer);
 
+
         setTimeout(() => {
+
 
             loading.style.display =
                 "none";
 
+
             birthday.style.display =
                 "block";
 
+
             startConfetti();
+
             startBalloons();
+
 
         }, 700);
 
     }
 
+
 }, 70);
 
 
 
+/* =========================
+   CONFETTI
+========================= */
+
 function startConfetti() {
 
+
     setInterval(() => {
+
 
         const piece =
             document.createElement("div");
 
+
         piece.className =
             "confetti";
+
 
         piece.style.left =
             Math.random() * 100 + "%";
 
+
         piece.style.width =
             (5 + Math.random() * 9) + "px";
+
 
         piece.style.height =
             (8 + Math.random() * 14) + "px";
 
+
         piece.style.background =
             [
+
                 "#ff4ecd",
                 "#7c4dff",
                 "#00d4ff",
                 "#00e676",
                 "#ffd32a",
                 "#ff6b6b"
+
             ][
+
                 Math.floor(
                     Math.random() * 6
                 )
+
             ];
+
 
         piece.style.animationDuration =
             (3 + Math.random() * 4) + "s";
+
 
         document
             .getElementById("confetti")
@@ -485,8 +701,11 @@ function startConfetti() {
 
 
         setTimeout(() => {
+
             piece.remove();
+
         }, 7000);
+
 
     }, 100);
 
@@ -494,34 +713,49 @@ function startConfetti() {
 
 
 
+/* =========================
+   BALLOONS
+========================= */
+
 function startBalloons() {
 
+
     setInterval(() => {
+
 
         const balloon =
             document.createElement("div");
 
+
         balloon.className =
             "balloon";
 
+
         balloon.innerText =
             [
+
                 "🎈",
                 "🎈",
                 "🎈",
                 "💖",
                 "🌈"
+
             ][
+
                 Math.floor(
                     Math.random() * 5
                 )
+
             ];
+
 
         balloon.style.left =
             Math.random() * 100 + "%";
 
+
         balloon.style.animationDuration =
             (7 + Math.random() * 6) + "s";
+
 
         document
             .getElementById("balloons")
@@ -529,12 +763,16 @@ function startBalloons() {
 
 
         setTimeout(() => {
+
             balloon.remove();
+
         }, 13000);
+
 
     }, 900);
 
 }
+
 
 </script>
 
